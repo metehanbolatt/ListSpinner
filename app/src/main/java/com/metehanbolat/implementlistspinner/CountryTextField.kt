@@ -43,9 +43,9 @@ fun CountryTextField(
         trailingIcon = {
             Icon(
                 imageVector = Icons.Filled.ArrowDropDown,
-                contentDescription = "Spinner Arrow",
-                modifier = Modifier.
-                        rotate( if(expanded) 180f else 0f )
+                contentDescription = "Spinner arrow",
+                modifier = Modifier
+                    .rotate(if (expanded) 180f else 0f)
             )
         }
     )
@@ -63,8 +63,8 @@ fun Modifier.expandable(
                 do {
                     event = awaitPointerEvent(PointerEventPass.Initial)
                 } while (!event.changes.all {
-                    it.changedToUp()
-                })
+                        it.changedToUp()
+                    })
                 onExpandedChange.invoke()
             }
         }

@@ -26,17 +26,17 @@ fun CountryPickerBottomSheet(
     val countries = remember { countryList(context) }
     var selectedCountry by remember { mutableStateOf(countries[0]) }
     val modalBottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
-    
+
     LaunchedEffect(key1 = show) {
         if (show) modalBottomSheetState.show() else modalBottomSheetState.hide()
     }
-    
+
     LaunchedEffect(key1 = modalBottomSheetState.currentValue) {
         if (modalBottomSheetState.currentValue == ModalBottomSheetValue.Hidden) {
             onDismissRequest()
         }
     }
-    
+
     ModalBottomSheetLayout(
         sheetContent = {
             title()
@@ -52,13 +52,16 @@ fun CountryPickerBottomSheet(
                             }
                             .padding(10.dp)
                     ) {
-                        Text(text = localeToEmoji(countryCode = countries[index].code))
+                        Text(
+                            text = localeToEmoji(countryCode = countries[index].code)
+                        )
                         Text(
                             text = countries[index].name,
                             modifier = Modifier
                                 .padding(start = 6.dp)
                                 .weight(2f)
                         )
+
                         Text(
                             text = countries[index].dialCode,
                             modifier = Modifier.padding(start = 6.dp)
@@ -70,7 +73,6 @@ fun CountryPickerBottomSheet(
         },
         sheetState = modalBottomSheetState,
         sheetShape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
-
     ) {
         content()
     }
